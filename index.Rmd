@@ -1,0 +1,41 @@
+---
+title: "Who Represents You?"
+output: html_document
+---
+
+```{r setup, warning=FALSE, message=FALSE, echo=FALSE, include=FALSE}
+# Sets address and source files
+library(knitr)
+address <- "Snoqualmie, WA"
+source("api-keys.R")
+source("civic-info.R")
+source("propublica.R")
+```
+
+## Introduction
+
+This report provides information on the political representatives for the address given (`r address`). It sources data from the [ProPublica API](https://projects.propublica.org/api-docs/congress-api/) and the [Google Civic Data API](https://developers.google.com/civic-information/).
+
+## Your Representatives
+
+The following table is a summary of the representatives for the given address from **federal** to **local** level. Contact information is provided _where it is available_.
+
+```{r civic_info, echo=FALSE}
+kable(civic_info)
+```
+
+# House of Representatives
+
+Now let's take a look at the big picture - the following graphs visualize the breakdown by gender and party affiliation for **all** of the current members of the House of Representatives for the given state.
+
+```{r gender_chart, echo=FALSE}
+plot(gender_chart)
+```
+
+```{r party_chart, echo=FALSE}
+plot(party_chart)
+```
+
+## `r rep_name`
+
+Let's learn a bit more about **one** representative: `r rep_name`. Representative `r rep_name` is `r rep_age` years old. You can find them on Twitter at `r twitter`. Of the last 20 votes they participated in, the representative agreed with the outcome `r agree_percent`% of the time.
